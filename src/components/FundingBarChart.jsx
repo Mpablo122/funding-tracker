@@ -12,8 +12,8 @@ function FundingBarChart({ data }) {
     return acc;
   }, {});
 
-  const years = Object.keys(fundingByYear);
-  const fundingAmounts = Object.values(fundingByYear);
+  const years = Object.keys(fundingByYear).sort();
+  const fundingAmounts = years.map((year) => fundingByYear[year]);
 
   const chartData = {
     labels: years,
@@ -35,10 +35,25 @@ function FundingBarChart({ data }) {
         position: 'top',
       },
     },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Year',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Total Funding (in USD)',
+        },
+        beginAtZero: true,
+      },
+    },
   };
 
   return (
-    <div>
+    <div className="chart-container">
       <h2>Total Funding by Year</h2>
       <Bar data={chartData} options={options} />
     </div>

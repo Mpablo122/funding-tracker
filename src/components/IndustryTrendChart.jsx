@@ -23,6 +23,7 @@ function IndustryTrendChart({ data }) {
       data: fundingByYear,
       fill: false,
       borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+      tension: 0.3, // Add smooth curves
     };
   });
 
@@ -38,10 +39,25 @@ function IndustryTrendChart({ data }) {
         position: 'top',
       },
     },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Year',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Funding (in USD)',
+        },
+        beginAtZero: true,
+      },
+    },
   };
 
   return (
-    <div>
+    <div className="chart-container">
       <h2>Funding Trends by Industry</h2>
       <Line data={chartData} options={options} />
     </div>
