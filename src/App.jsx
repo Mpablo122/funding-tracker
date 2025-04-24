@@ -7,8 +7,13 @@ function App() {
   const [fundingData, setFundingData] = useState([]);
 
   useEffect(() => {
-    fetch('/funding.json')
-      .then((response) => response.json())
+    fetch('/funding.json') // Corrected path
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => setFundingData(data))
       .catch((error) => console.error('Error fetching funding data:', error));
   }, []);

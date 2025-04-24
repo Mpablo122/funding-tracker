@@ -8,11 +8,11 @@ function IndustryTrendChart({ data }) {
   // Group funding data by industry and year
   const industryData = {};
   data.forEach((item) => {
-    const { industry, year, funding } = item;
+    const { industry, year, amount } = item; // Use 'amount' instead of 'funding'
     if (!industryData[industry]) {
       industryData[industry] = {};
     }
-    industryData[industry][year] = (industryData[industry][year] || 0) + funding;
+    industryData[industry][year] = (industryData[industry][year] || 0) + amount;
   });
 
   const years = [...new Set(data.map((item) => item.year))].sort();

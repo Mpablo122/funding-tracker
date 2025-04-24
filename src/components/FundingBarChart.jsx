@@ -8,7 +8,7 @@ function FundingBarChart({ data }) {
   // Calculate total funding by year
   const fundingByYear = data.reduce((acc, item) => {
     const year = item.year;
-    acc[year] = (acc[year] || 0) + item.funding;
+    acc[year] = (acc[year] || 0) + item.amount; // Use 'amount' instead of 'funding'
     return acc;
   }, {});
 
